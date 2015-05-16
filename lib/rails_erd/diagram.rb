@@ -126,7 +126,7 @@ module RailsERD
       instance_eval &callbacks[:setup]
 
       filtered_entities.each do |entity|
-        instance_exec entity, filtered_attributes(entity), &callbacks[:each_entity]
+        instance_exec entity, filtered_attributes(entity), entity.relationships, &callbacks[:each_entity]
       end
 
       filtered_specializations.each do |specialization|

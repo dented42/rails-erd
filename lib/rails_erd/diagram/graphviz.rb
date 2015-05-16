@@ -209,8 +209,8 @@ module RailsERD
         end
       end
 
-      each_entity do |entity, attributes|
-        draw_node entity.name, entity_options(entity, attributes)
+      each_entity do |entity, attributes, relationships|
+        draw_node entity.name, entity_options(entity, attributes, relationships)
       end
 
       each_specialization do |specialization|
@@ -268,7 +268,8 @@ module RailsERD
         if options.filetype.to_sym == :dot then :none else options.filetype.to_sym end
       end
 
-      def entity_options(entity, attributes)
+      def entity_options(entity, attributes, relationships)
+        puts relationship.inspect
         label = options[:markup] ? "<#{read_template(:html).result(binding)}>" : "#{read_template(:record).result(binding)}"
         entity_style(entity, attributes).merge :label => label
       end
