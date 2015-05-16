@@ -59,7 +59,7 @@ module RailsERD
         nodesep:     0.4,
         pad:         "0.4,0.4",
         margin:      "0,0",
-        concentrate: true,
+        concentrate: false,
         labelloc:    :t,
         fontsize:    13,
         fontname:    FONTS[:bold]

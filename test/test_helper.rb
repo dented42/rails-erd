@@ -121,6 +121,18 @@ class ActiveSupport::TestCase
     create_model "Palace", Structure
   end
 
+  def create_overlapping_relationships
+    create_model "One" do
+      has_one :child, class_name: 'Two'
+      belongs_to :parent, class_name: 'Two'
+    end
+    create_model "Two", :one => :references do
+      has_one :child, class_name: 'One'
+      belongs_to :child, class_name: 'One'
+    end
+  end
+
+
   private
 
   def reset_config_file

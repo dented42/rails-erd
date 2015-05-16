@@ -359,6 +359,11 @@ class GraphvizTest < ActiveSupport::TestCase
     assert_equal [["m_City", "m_Person"], ["m_Country", "m_City"]], find_dot_node_pairs(diagram).sort
   end
 
+  test "generate should make graphs that don't concentrate edges" do
+    create_overlapping_relationships
+    assert_equal false, diagram().graph["concentrate"].to_ruby()
+end
+
   # Simple notation style ====================================================
   test "generate should use no style for one to one cardinalities with simple notation" do
     create_one_to_one_assoc_domain
